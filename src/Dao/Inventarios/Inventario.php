@@ -21,5 +21,17 @@ class Inventario extends Table
     )
     {
         $sqlstr = "INSERT INTO inventario(nombre_producto, descripcion_producto, codigo_barra_producto,precio_compra,precio_venta,estado_producto) Values(:prod_nombre,:prod_descripcion,:prod_cod_barra,:prod_precio_compra,:precio_venta,:prod_est);";
+        return self::executeNonQuery(
+            $sqlstr,
+            [
+                ":prod_nombre"=>$prod_nombre,
+                ":prod_descripcion"=>$prod_descripcion,
+                ":prod_cod_barra"=>$prod_cod_barra,
+                ":prod_precio_compra"=>$prod_precio_compra,
+                ":precio_venta"=>$precio_venta,
+                ":prod_est"=>$prod_est
+            ]
+        );
     }
+    
 }
