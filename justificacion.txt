@@ -1,0 +1,15 @@
+Justificación del lenguaje PHP
+
+Se eligió PHP como lenguaje de desarrollo porque es ampliamente utilizado en aplicaciones web, especialmente en sistemas administrativos para micro y pequeñas empresas.
+PHP permite un desarrollo rápido, tiene bajo consumo de recursos y es compatible con la mayoría de servidores web, lo que lo hace ideal para proyectos de bajo costo y fácil despliegue, alineándose con la realidad de muchas microempresas.
+Además, cuenta con una gran comunidad y documentación, lo que facilita el mantenimiento y la escalabilidad futura del sistema.
+
+Justificación del framework simplePHPMVC
+
+Se decidió utilizar el framework simplePHPMVC porque implementa el patrón de diseño MVC (Modelo–Vista–Controlador), el cual ayuda a mantener una mejor organización del código, separación de responsabilidades y mayor consistencia de datos.
+Al ser un framework ligero y conocido por el equipo de desarrollo, permite mayor control del sistema, facilidad para realizar ajustes y una curva de aprendizaje baja, optimizando el tiempo de desarrollo.
+Esto resulta clave para un sistema de inventarios que puede crecer en funcionalidades conforme aumenten las necesidades de la empresa, favoreciendo la escalabilidad del proyecto.
+
+Relación con el planteamiento del problema
+
+El uso de PHP y simplePHPMVC permite desarrollar un sistema accesible, ordenado y adaptable, ayudando a las microempresas a reducir pérdidas, mejorar el control del inventario y mantener información confiable sin requerir infraestructura compleja ni altos costos.
