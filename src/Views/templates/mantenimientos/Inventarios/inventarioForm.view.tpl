@@ -10,7 +10,7 @@
         </ul>
     {{endif hasErrores}}
     <form action="index.php?page=Mantenimientos-Cinventario&mode={{mode}}&id_prod={{id_prod}}" method="POST">
-        <div>
+        <div {{codigoINS}}>
             <label for="id_prod">Código</label>
             <input type="text" name="id_prod" id="id_prod" value="{{id_prod}}" {{codigoReadonly}}/>
             <input type="hidden" name="vlt" value="{{token}}" />

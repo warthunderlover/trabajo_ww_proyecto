@@ -187,6 +187,8 @@ class Cinventario extends PublicController
 
         $viewData["readonly"] = in_array($this->mode, ["DSP", "DEL"]) ? "readonly" : "";
 
+        $viewData["codigoINS"] = $this->mode ==="INS"?"hidden":"";
+
         $viewData["isDisplay"] = $this->mode === "DSP";
 
         $viewData["selected" . $this->estado] = "selected";
