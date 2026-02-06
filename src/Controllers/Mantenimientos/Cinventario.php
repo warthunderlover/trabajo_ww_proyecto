@@ -94,14 +94,17 @@ class Cinventario extends PublicController
 
     //aquí inicializare la pagina, para poder manejar los datos que vienen del formulario y todo eso
     private function page_init()
-    {
+    { //los nombres de las variables tienen que ser iguales a los nombres del 
+    //foreach de mi lista de productos, o sea, el nombre del campo en la base de datos, para que así se puedan cargar los datos a la vista sin problemas
         if(isset($_GET["mode"]) && isset($this->modes[$_GET["mode"]]))
         {
             $this->mode = $_GET["mode"];
+
             if($this->mode !== "INS")
             {
                 $tmpCodiProd='';
-                if(isset($_GET["id_prod"]))
+
+                if (isset($_GET["id_prod"])) 
                 {
                     $tmpCodiProd = $_GET["id_prod"];
                 }
@@ -112,18 +115,19 @@ class Cinventario extends PublicController
 
                 //extraer producto por codigo 
                 $tmpProd = DaoInventario::obtenerPorCodigo($tmpCodiProd);
+
                 if(count($tmpProd)===0)
                 {
                     throw new Exception("No se encontró ningun producto con este id");
                 }
-                $this->id_prod = $tmpProd["id_prod"];
-                $this->prod_cod_barra = $tmpProd["prod_cod_barra"];
-                $this->prod_nombre = $tmpProd["prod_nombre"];
-                $this->prod_descripcion = $tmpProd["prod_descripcion"];
-                $this->prod_precio_compra = $tmpProd["prod_precio_compra"];
-                $this->prod_precio_venta = $tmpProd["prod_precio_venta"];
-                $this->prod_ganancia = $tmpProd["prod_ganancia"];
-                $this->prod_cant = $tmpProd["prod_cant"];
+                $this->id_prod = $tmpProd["id_producto"];
+                $this->prod_cod_barra = $tmpProd["codigo_barra_producto"];
+                $this->prod_nombre = $tmpProd["nombre_producto"];
+                $this->prod_descripcion = $tmpProd["descripcion_producto"];
+                $this->prod_precio_compra = $tmpProd["precio_compra"];
+                $this->prod_precio_venta = $tmpProd["precio_venta"];
+                $this->prod_ganancia = $tmpProd["ganancia"];
+                $this->prod_cant = $tmpProd["stock_actual"];
             }
         }
         else
@@ -139,15 +143,15 @@ class Cinventario extends PublicController
 
         if(isset($_SESSION[$this->name . "_token"]) && $_SESSION[$this->name . "_token"] !== $this->validationToken)
         {
-            throw new Excception("Error de validación de token");
+            throw new Exception("Error de validación de token");
         }
 
-        $this->id_prod = intval($_POST["id_prod"] ?? 0);
-        $this->prod_cod_barra = $_POST["prod_cod_barra"] ?? '';
-        $this->prod_nombre = $_POST["prod_nombre"] ?? '';
-        $this->prod_descripcion = $_POST["prod_descripcion"] ?? '';
+        $this->id_prod = isset($_POST["id_prod"]) ? (int)$_POST["id_prod"] : 0;
+        $this->prod_cod_barra = isset($_POST["prod_cod_barra"]) ?? '';
+        $this->prod_nombre = isset($_POST["prod_nombre"]) ?? '';
+        $this->prod_descripcion = isset($_POST["prod_descripcion"]) ?? '';
         $this->prod_precio_compra = floatval($_POST["prod_precio_compra"] ?? 0.0);
-        $this->prod_precio_venta = floatval($_POST["prod_precio_venta"] ?? 0.0);
+        $this->prod_precio_venta = floatval($_POST["prod_precio_venta"]) ?? 0.0;
         $this->prod_cant = intval($_POST["prod_cant"] ?? 0);
 
         return $errores;
@@ -191,7 +195,7 @@ class Cinventario extends PublicController
 
         $viewData["isDisplay"] = $this->mode === "DSP";
 
-        $viewData["selected" . $this->estado] = "selected";
+        $viewData["selected" . $this->prod_est] = "selected";
         
         
         return $viewData;

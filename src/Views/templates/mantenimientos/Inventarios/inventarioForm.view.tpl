@@ -10,6 +10,7 @@
         </ul>
     {{endif hasErrores}}
     <form action="index.php?page=Mantenimientos-Cinventario&mode={{mode}}&id_prod={{id_prod}}" method="POST">
+        
         <div {{codigoINS}}>
             <label for="id_prod">Código</label>
             <input type="text" name="id_prod" id="id_prod" value="{{id_prod}}" {{codigoReadonly}}/>
@@ -29,16 +30,16 @@
         </div>
         <div>
             <label for="prod_precio_compra">Precio Compra</label>
-            <input type="text" name="pro_cod_barra" id="pro_cod_barra" value="{{pro_cod_barra}}" {{readonly}}/>
+            <input type="number" name="prod_precio_compra" id="prod_precio_compra" value="{{prod_precio_compra}}" {{readonly}}/>
         </div>
         <div>
             <label for="prod_precio_venta">Precio Venta</label>
-            <input type="text" name="prod_precio_venta" id="prod_precio_venta" value="{{prod_precio_venta}}" {{readonly}}/>
+            <input type="number" name="prod_precio_venta" id="prod_precio_venta" value="{{prod_precio_venta}}" {{readonly}}/>
         </div>
         
         <div>
             <label for="prod_cant">Cantidad</label>
-            <input type="text" name="prod_cant" id="prod_cant" value="{{prod_cant}}" {{readonly}}/>
+            <input type="number" name="prod_cant" id="prod_cant" value="{{prod_cant}}" {{readonly}}/>
         </div>
         
         <div>
