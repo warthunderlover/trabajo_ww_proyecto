@@ -30,6 +30,7 @@
                 <td>{{precio_venta}}</td>
                 <td>{{stock_actual}}</td>
                 <td>
+                    <!-- Aquí se muestran los enlaces de acción según los permisos del usuario, recordar usar el "~" a la hora de llamar a las funciones, ya que asi php sabe que no es de la raiz de la base de datos si no que de otro lado -->
                     {{if ~product_UPD}}
                     <a href="index.php?page=Mantenimientos-Cinventario&mode=UPD&id_prod={{id_producto}}">Editar</a>
                     {{endif ~product_UPD}}
