@@ -28,7 +28,7 @@ class Inventario extends Table
         string $prod_cod_barra,
         float $prod_precio_compra,
         float $prod_precio_venta,
-        bool $prod_est
+        int $prod_cantidad
     )
     {
         $sqlstr = "INSERT INTO inventario(
@@ -37,7 +37,7 @@ class Inventario extends Table
         codigo_barra_producto,
         precio_compra,
         precio_venta,
-        estado_producto) 
+        stock_actual) 
         
         Values(
         :prod_nombre,
@@ -45,19 +45,18 @@ class Inventario extends Table
         :prod_cod_barra,
         :prod_precio_compra,
         :prod_precio_venta,
-        :prod_est);";
+        :prod_cantidad);";
         
-        return self::executeNonQuery(
-            $sqlstr,
-            [
+        $params =  [
                 "prod_nombre"=>$prod_nombre,
                 "prod_descripcion"=>$prod_descripcion,
                 "prod_cod_barra"=>$prod_cod_barra,
                 "prod_precio_compra"=>$prod_precio_compra,
                 "prod_precio_venta"=>$prod_precio_venta,
-                "prod_est"=>$prod_est
-            ]
-        );
+                "prod_cantidad"=>$prod_cantidad
+            ];
+
+        return self::executeNonQuery($sqlstr,$params);
     }
 
 }

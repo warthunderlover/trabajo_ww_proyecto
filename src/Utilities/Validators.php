@@ -18,6 +18,11 @@ class Validators {
         return preg_match("/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,32}$/", $valor) && true;
     }
 
+    static public function IsValidBarcode($valor): bool
+    {
+        return preg_match("/^\d{13}$/", $valor) ===1;
+    }
+
     private function __construct()
     {
         

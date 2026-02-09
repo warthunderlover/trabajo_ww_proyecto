@@ -1,5 +1,5 @@
 <section class="py-4 px-4 depth-2">
-    <h2>Listado de Clientes</h2>
+    <h2>Listado de Productos del inventario</h2>
 </section>
 <section class="WWList">
     <table>
@@ -11,8 +11,12 @@
                 <th>Codigo de Barras</th>
                 <th>Precio compra</th>
                 <th>Precio Venta</th>
-                <th>Ganancia</th>
-                <th><a href="index.php?page=Mantenimientos-Cinventario&mode=INS">Nuevo</a></th>
+                <th>Stock Actual</th>
+                <th>
+                {{if product_INS}}
+                    <a href="index.php?page=Mantenimientos-Cinventario&mode=INS">Nuevo</a>
+                {{endif product_INS}}
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -24,11 +28,19 @@
                 <td>{{codigo_barra_producto}}</td>
                 <td>{{precio_compra}}</td>
                 <td>{{precio_venta}}</td>
-                <td>{{ganancia}} %</td>
+                <td>{{stock_actual}}</td>
                 <td>
-                    <a href="index.php?page=Mantenimientos-Cinventario&mode=UPD&id_prod={{id_producto}}">Editar</a>&nbsp;
-                    <a href="index.php?page=Mantenimientos-Cinventario&mode=DEL&id_prod={{id_producto}}">Eliminar</a>&nbsp;
+                    {{if ~product_UPD}}
+                    <a href="index.php?page=Mantenimientos-Cinventario&mode=UPD&id_prod={{id_producto}}">Editar</a>
+                    {{endif ~product_UPD}}
+                    &nbsp;
+                    {{if ~product_DEL}}
+                    <a href="index.php?page=Mantenimientos-Cinventario&mode=DEL&id_prod={{id_producto}}">Eliminar</a>
+                    {{endif ~product_DEL}}
+                    &nbsp;
+                    {{if ~product_DSP}}
                     <a href="index.php?page=Mantenimientos-Cinventario&mode=DSP&id_prod={{id_producto}}">Ver</a>
+                    {{endif ~product_DSP}}
                 </td>
             </tr>
             {{endfor inventario}}

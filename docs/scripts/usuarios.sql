@@ -1,0 +1,3 @@
+INSERT INTO roles_usuarios (usercod, rolescod, roleuserest, roleuserfch, roleuserexp) VALUES (1, 'ADMIN', 'ACT', NOW(), DATE_ADD(NOW(), INTERVAL 1 YEAR));
+INSERT INTO roles_usuarios (usercod, rolescod, roleuserest, roleuserfch, roleuserexp) VALUES (2, 'CLIENTE', 'ACT', NOW(), DATE_ADD(NOW(), INTERVAL 1 YEAR));
+INSERT INTO roles_usuarios (usercod, rolescod, roleuserest, roleuserfch, roleuserexp) VALUES (3, 'VENDEDOR', 'ACT', NOW(), DATE_ADD(NOW(), INTERVAL 1 YEAR));

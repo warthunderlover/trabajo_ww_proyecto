@@ -13,6 +13,12 @@
   ],
   "private": [
     {
+      "id": "Menu_Products",
+      "nav_url": "index.php?page=Mantenimientos-Inventario",
+      "nav_label":"<i class=\"fas fa-table\"></i>&nbsp;WW Productos"
+    },
+
+    {
       "id":"Menu_PaymentCheckout",
       "nav_url": "index.php?page=Checkout_Checkout",
       "nav_label": "Carretilla de Compra"
