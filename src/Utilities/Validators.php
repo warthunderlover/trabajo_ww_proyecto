@@ -20,7 +20,7 @@ class Validators {
 
     static public function IsValidBarcode($valor): bool
     {
-        return preg_match("/^\d{13}$/", $valor) ===1;
+        return preg_match('/^\d{8}$|^\d{12,14}$/', $valor) === 1;
     }
 
     private function __construct()

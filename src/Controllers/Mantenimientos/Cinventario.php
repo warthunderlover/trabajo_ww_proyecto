@@ -21,7 +21,7 @@ class Cinventario extends PrivateController
     private $modes = 
     [
         "INS"=>"Insertando producto nuevo",
-        "UPD"=>"Actulizando producto %s",
+        "UPD"=>"Actualizando producto %s",
         "DSP"=>"Viendo producto %s",
         "DEL"=>"Eliminando producto %s"
     ];
@@ -85,6 +85,53 @@ class Cinventario extends PrivateController
                                     );
                                 }
                             break;
+                            case "UPD":
+
+                                $errores = $this->validarProductoINS();
+                                
+                                //aqui se hace una validacion, si hay un error no se continua con el insert, pero si no hay errores se continua ejecutando el programa como se debe.
+                                if (count($errores) > 0) {
+                                    $this->errores = array_merge($this->errores, $errores);
+                                    break;
+                                }
+
+                                    $affectedRows = DaoInventario::ActualizarProducto(
+                                        $this->id_prod,
+                                        $this->prod_nombre, 
+                                        $this->prod_descripcion,
+                                        $this->prod_cod_barra,
+                                        $this->prod_precio_compra,
+                                        $this->prod_precio_venta,
+                                        $this->prod_cant
+                                    );
+                                    if($affectedRows>0)
+                                    {
+                                        Site::redirectToWithMsg(
+                                            inventario_total_path,
+                                            "¡Producto actualizado exitosamente!"
+                                        );
+                                    }
+                                break;
+                            case "DEL":
+                                
+                                $errores = $this->validarProductoINS();
+                                
+                                //aqui se hace una validacion, si hay un error no se continua con el insert, pero si no hay errores se continua ejecutando el programa como se debe.
+                                if (count($errores) > 0) {
+                                    $this->errores = array_merge($this->errores, $errores);
+                                    break;
+                                }
+                                
+                                $affectedRows = DaoInventario::EliminarProducto($this->id_prod);
+                                
+                                if($affectedRows>0)
+                                {
+                                    Site::redirectToWithMsg(
+                                        inventario_total_path,
+                                        "¡Producto eliminado exitosamente!"
+                                    );
+                                }
+                                break;
                         }
                     }catch(Exception $err)
                     {
@@ -135,12 +182,20 @@ class Cinventario extends PrivateController
                 "mensaje" => "El precio de compra no puede ser mayor al precio de venta."
             ],
             [
+                    "condicion" => fn() => $prod_precio_compra <= 0,
+                    "mensaje" => "El precio de compra debe ser mayor a cero."
+                ],
+                [
+                    "condicion" => fn() => $prod_precio_venta <= 0,
+                    "mensaje" => "El precio de venta debe ser mayor a cero."
+            ],
+            [
                 "condicion" => fn() => \Utilities\Validators::IsEmpty($prod_cod_barra),
                 "mensaje" => "El código de barra no puede estar vacío."
             ],
             [
                 "condicion" => fn() => !\Utilities\Validators::IsValidBarcode($prod_cod_barra),
-                "mensaje" => "El código de barra debe tener exactamente 13 dígitos."
+                "mensaje" => "El código de barra debe tener la cantidad valida de digitos dígitos."
             ],
             [
                 "condicion" => fn() => $prod_cant < 0,
@@ -265,14 +320,15 @@ class Cinventario extends PrivateController
 
         $viewData["readonly"] = in_array($this->mode, ["DSP", "DEL"]) ? "readonly" : "";
 
-        $viewData["codigoINS"] = $this->mode ==="INS"?"hidden":"";
+        $viewData["codigoINS"] = $this->mode ==="INS"?"style='display:none;'":"";
+        $viewData["estadoDEL"] = in_array($this->mode, ["DSP","DEL"]) ? "style='display:none;'" : "";
+        $viewData["estadoDSP"] = $this->mode === "DSP" ? "disable" : "";
 
         $viewData["isDisplay"] = $this->mode === "DSP";
 
         $viewData["selected" . $this->prod_est] = "selected";
 
         $viewData["precioMinimmo"] = $this->mode === "INS" ?"0.01" : "0.00";
-        
         
         return $viewData;
     }

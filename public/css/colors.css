@@ -5,11 +5,13 @@
   --secondary_text: #333;
   --secondary_bg: #fff;
   --seconady_bg300: #AAA;
+  --primary_table_header: #61246c;
 
   --primary_action_bg: #2b8251;
   --primary_action_tx: #fff;
   --secondary_action_bg: #2b5c82;
   --secondary_action_txt: #fff;
+  
 
   --alert: #c21010;
   --warning: #bb980d;

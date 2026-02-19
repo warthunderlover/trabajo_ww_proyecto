@@ -5,6 +5,7 @@
       "nav_url": "index.php?page=Sec_Login",
       "nav_label":"<i class=\"fas fa-sign-in-alt\"></i>&nbsp;Iniciar Sesión"
     },
+
      {
       "id": "Menu_SignUp",
       "nav_url": "index.php?page=Sec_Register",
@@ -15,9 +16,23 @@
     {
       "id": "Menu_Products",
       "nav_url": "index.php?page=Mantenimientos-Inventario",
-      "nav_label":"<i class=\"fas fa-table\"></i>&nbsp;WW Productos"
+      "nav_label":"<i class=\"fas fa-table\"></i>&nbsp;Listado de Productos"
     },
-
+    {
+      "id": "Menu_Usuarios",
+      "nav_url": "index.php?page=Mantenimientos-Usuarios",
+      "nav_label":"<i class=\"fas fa-table\"></i>&nbsp;Listado de Usuarios"
+    },
+    {
+      "id": "Menu_Roles",
+      "nav_url": "index.php?page=Mantenimientos-Roles",
+      "nav_label":"<i class=\"fas fa-table\"></i>&nbsp;Listado de Roles"
+    },
+    {
+      "id": "Menu_Roles",
+      "nav_url": "index.php?page=Mantenimientos-Funciones",
+      "nav_label":"<i class=\"fas fa-table\"></i>&nbsp;Listado de funciones"
+    },
     {
       "id":"Menu_PaymentCheckout",
       "nav_url": "index.php?page=Checkout_Checkout",
